@@ -12,26 +12,26 @@ AR = ar rcs
 RLIB = ranlib
 
 all:	obj
-	@$(MAKE) -j $(NAME)
+	$(MAKE) -j $(NAME)
 
 obj:
-	@mkdir -p objs
+	mkdir -p objs
 
 $(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@$(RLIB) $(NAME)
-	@echo "[INFO] $(NAME) created!"
+	$(AR) $(NAME) $(OBJS)
+	$(RLIB) $(NAME)
+	echo "[INFO] $(NAME) created!"
 
 objs/%.o: srcs/%.c
 	$(CC) $(FLAGS) -c $< -o $@ $(LFLAGS)/$(INCLS)
 
 clean:	
-	@rm -rf $(OBJS) objs
-	@echo "[INFO] Objects removed!"
+	rm -rf $(OBJS) objs
+	echo "[INFO] Objects removed!"
 
 fclean: clean
-	@rm -rf $(NAME) $(LIB_DIR)
-	@echo "[INFO] Library [$(NAME)] removed!"
+	rm -rf $(NAME) $(LIB_DIR)
+	echo "[INFO] Library [$(NAME)] removed!"
 
 re: fclean all
 
